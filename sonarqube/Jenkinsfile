@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/vinex22/Devops.git'
+                git 'https://github.com/jabedhasan21/java-hello-world-with-maven.git'
             }
          }        
        stage('Build'){
