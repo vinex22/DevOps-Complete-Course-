@@ -9,3 +9,4 @@ node {
       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=multi "
   }
 }
+}
