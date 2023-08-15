@@ -1,17 +1,23 @@
-pipeline{
-agent {
-  label 'vanilla'
-}
-stages
-{
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def scannerHome = tool 'sq';
-    withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
+pipeline {
+    agent {
+        label 'vanilla'
     }
-  }
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+      
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sq'
+                    withSonarQubeEnv('sq') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+    }
 }
