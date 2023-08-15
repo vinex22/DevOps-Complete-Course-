@@ -1,12 +1,11 @@
 node {
     stage('GetCode') {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/yankils/hello-world.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/indomyzz/SwagMuseum.git']]])
     }
     
     stage('SonarQube Analysis') {
     def scannerHome = tool 'sq';
     withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=multi -Dsonar.java.binaries=build/classes"
-    }
+      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=multi "
   }
 }
