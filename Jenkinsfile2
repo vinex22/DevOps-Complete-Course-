@@ -1,13 +1,12 @@
 node {
-  stages {
-  stage('GetCode'){
-            steps{
-                git 'https://github.com/yankils/hello-world.git'
-            }}
-  stage('SonarQube Analysis') {
-    def scannerHome = tool 'sq';
-    withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
+    stage('GetCode') {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/yankils/hello-world.git']]])
     }
-  }
-}}
+    
+    stage('SonarQube Analysis') {
+        def scannerHome = tool name: 'sq'
+        withSonarQubeEnv('sq') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+    }
+}
