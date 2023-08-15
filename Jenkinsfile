@@ -1,3 +1,4 @@
+pipeline{
 agent {
   label 'vanilla'
 }{
@@ -10,4 +11,5 @@ agent {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
+}
 }
