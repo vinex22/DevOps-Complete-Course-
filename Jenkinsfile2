@@ -6,7 +6,8 @@ node {
     stage('SonarQube Analysis') {
         def scannerHome = tool name: 'sq'
         withSonarQubeEnv('sq') {
-            sh "${scannerHome}/bin/sonar-scanner"
+            sh "${scannerHome}/bin/sonar-scanner" +
+            "-Ddonar.projectkey=multi"
         }
     }
 }
