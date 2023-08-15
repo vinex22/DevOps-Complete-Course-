@@ -1,4 +1,6 @@
-node {
+agent {
+  label 'vanilla'
+}{
   stage('SCM') {
     checkout scm
   }
