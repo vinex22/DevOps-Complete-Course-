@@ -1,7 +1,9 @@
 pipeline{
 agent {
   label 'vanilla'
-}{
+}
+Stages
+{
   stage('SCM') {
     checkout scm
   }
@@ -12,4 +14,4 @@ agent {
     }
   }
 }
-}
+
